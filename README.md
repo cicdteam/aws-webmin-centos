@@ -1,4 +1,4 @@
-# AWS EC2 instance with Webmin/Virtualmin by Terraform
+## AWS EC2 instance with Webmin/Virtualmin by Terraform
 
 Create AWS resources and EC2 instance with Webmin/Virtulmin by [Terraform](http://terraform.io).
 
@@ -27,4 +27,4 @@ Perform steps:
 - check/setup variables in **vars.tfvars** file
 - perfom test `terraform plan -var-file=vars.tfvars`
 - create AWS resources by `terraform apply -var-file=vars.tfvars`
-- check terraform output and login to Wibmin UI with provided Logib/Password
+- check terraform output and login to Wibmin UI with provided Login/Password
