@@ -22,14 +22,19 @@ sudo yum -y -q install linux-image-extra-$(uname -r) >/dev/null 2>&1 && \
 sudo yum -y -q update >/dev/null 2>&1 && \
 echo "updated."
 
-echo -n "Install virtualmin for $NAME " && \
+echo "Install Perl" && \
 sudo yum -y -q install perl >/dev/null 2>&1 && \
-curl -sSL http://software.virtualmin.com/gpl/scripts/install.sh -o /tmp/install.sh >/dev/null 2>&1 && \
+echo "Download Virtualmin installation script" && \
+curl -sSL http://software.virtualmin.com/gpl/scripts/install.sh -o /tmp/install.sh && \
+echo "Install virtualmin for $NAME" && \
 sudo sh /tmp/install.sh -f --hostname $NAME >/dev/null 2>&1 && \
-sudo /usr/libexec/webmin/changepass.pl /etc/webmin root $PASS >/dev/null 2>&1 && \
+echo "Change password for Virtualmin root user" && \
+sudo /usr/libexec/webmin/changepass.pl /etc/webmin root $PASS  && \
+echo "Diasable SSL in MiniServ config file" && \
 sudo sed -ie "s/ssl=1/ssl=0/" /etc/webmin/miniserv.conf >/dev/null 2>&1 && \
+echo "Restart Webmin" && \
 sudo service webmin restart >/dev/null 2>&1 && \
-echo "...installed" || die "problem with Virtualmin"
+echo "Webmin and Virtualmin installed" || die "problem with Virtualmin"
 
 echo "Cleanup"
 sudo yum -y -q clean all >/dev/null 2>&1
