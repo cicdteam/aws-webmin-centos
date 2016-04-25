@@ -30,7 +30,7 @@ echo "Install virtualmin for $NAME" && \
 sudo sh /tmp/install.sh -f --hostname $NAME >/dev/null 2>&1 && \
 echo "Change password for Virtualmin root user" && \
 sudo /usr/libexec/webmin/changepass.pl /etc/webmin root $PASS  && \
-echo "Diasable SSL in MiniServ config file" && \
+echo "Disable SSL in MiniServ config file" && \
 sudo sed -ie "s/ssl=1/ssl=0/" /etc/webmin/miniserv.conf >/dev/null 2>&1 && \
 echo "Restart Webmin" && \
 sudo service webmin restart >/dev/null 2>&1 && \
