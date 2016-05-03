@@ -19,7 +19,7 @@ Set env variables with AWS credentials before start:
 ```
 export AWS_ACCESS_KEY_ID="YOURACCESSKEYID"
 export AWS_SECRET_ACCESS_KEY="YourSuperSecretAccessKeyForAWS"
-export AWS_DEFAULT_REGION="eu-east-1"
+export AWS_DEFAULT_REGION="us-east-1"
 ```
 
 Perform steps:
