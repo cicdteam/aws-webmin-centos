@@ -1,5 +1,7 @@
 ## AWS EC2 instance with Webmin/Virtualmin by Terraform
 
+![Diagram fo Infra](aws-webmin.jpg)
+
 Create AWS resources and EC2 instance with Webmin/Virtulmin by [Terraform](http://terraform.io).
 
 - VPC with CIDR 10.20.0.0/16
