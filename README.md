@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/pureclouds/aws-webmin-centos.svg?style=svg)](https://circleci.com/gh/pureclouds/aws-webmin-centos)
+
 ## AWS EC2 instance with Webmin/Virtualmin by Terraform
 
 ![Diagram fo Infra](aws-webmin.jpg)

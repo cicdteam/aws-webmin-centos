@@ -25,9 +25,9 @@ test:
 
   override:
     - echo "Test infrastructure"
-    - ssh -i ~/.ssh/aws_infra -o StrictHostKeyChecking=no ubuntu@$(terraform output Public_IP) uname -a
-    - ssh -i ~/.ssh/aws_infra ubuntu@$(terraform output Public_IP) ping -c 5 google.com
-    - curl -I $(terraform output Public_IP)
+    - ssh -i ~/.ssh/aws_infra -o StrictHostKeyChecking=no centos@$(terraform output Public_IP) uname -a
+    - ssh -i ~/.ssh/aws_infra centos@$(terraform output Public_IP) ping -c 5 google.com
+    - curl -I $(terraform output Public_IP):10000
 
   post:
     - echo "Destroy infrastructure and store state"
