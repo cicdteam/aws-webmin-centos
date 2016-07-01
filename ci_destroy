@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ -z  $AWS_ACCESS_KEY_ID ]; then echo "Please specify AWS_ACCESS_KEY_ID variable"; exit 1; fi
+if [ -z  $AWS_SECRET_ACCESS_KEY ]; then echo "Please specify AWS_SECRET_ACCESS_KEY variable"; exit 1; fi
+
+terraform remote pull
+terraform get
+terraform destroy -force -refresh=false -var-file=vars.tfvars $*
+terraform destroy -force -refresh=true  -var-file=vars.tfvars $*
+terraform remote push

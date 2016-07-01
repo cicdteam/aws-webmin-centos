@@ -1,0 +1,34 @@
+machine:
+
+  environment:
+    TF: 0.6.16
+    PATH: ~/tf.bin:$PATH
+
+dependencies:
+  pre:
+
+    # install terraform
+    - mkdir -p ~/tf.bin
+    - if [[ ! -e ~/tf.bin/terraform ]]; then wget -q https://releases.hashicorp.com/terraform/${TF}/terraform_${TF}_linux_amd64.zip -O t.zip && unzip -qq -o t.zip -d ~/tf.bin; fi
+    - terraform version
+
+    # generate test ssh keys to use for infrastructure resources
+    - mkdir -p ~/.ssh
+    - ssh-keygen -f ~/.ssh/aws_infra -P ""
+
+test:
+
+  pre:
+    - echo "Configure remote state and build new infrastructure"
+    - ./ci_config
+    - ./ci_apply
+
+  override:
+    - echo "Test infrastructure"
+    - ssh -i ~/.ssh/aws_infra -o StrictHostKeyChecking=no ubuntu@$(terraform output Public_IP) uname -a
+    - ssh -i ~/.ssh/aws_infra ubuntu@$(terraform output Public_IP) ping -c 5 google.com
+    - curl -I $(terraform output Public_IP)
+
+  post:
+    - echo "Destroy infrastructure and store state"
+    - ./ci_destroy

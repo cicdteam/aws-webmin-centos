@@ -10,8 +10,8 @@ region = "us-east-1"
 
 # paths to public and private ssh keys
 #
-site_public_key_path  = "~/.ssh/aws_infra.pem.pub"
-site_private_key_path = "~/.ssh/aws_infra.pem"
+site_public_key_path  = "~/.ssh/aws_infra.pub"
+site_private_key_path = "~/.ssh/aws_infra"
 
 # type of EC2 instance for host
 #

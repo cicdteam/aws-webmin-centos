@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ -z  $S3BUCKET ]; then echo "Please specify AWS S3 bucket name to store state files as S3BUCKET variable"; exit 1; fi
+if [ -z  $S3BUCKETREG ]; then echo "Please specify AWS S3 bucket region to store state files as S3BUCKET variable"; exit 1; fi
+if [ -z  $AWS_ACCESS_KEY_ID ]; then echo "Please specify AWS_ACCESS_KEY_ID variable"; exit 1; fi
+if [ -z  $AWS_SECRET_ACCESS_KEY ]; then echo "Please specify AWS_SECRET_ACCESS_KEY variable"; exit 1; fi
+
+terraform remote config \
+  -backend=s3 \
+  -backend-config="bucket=$S3BUCKET" \
+  -backend-config="region=$S3BUCKETREG" \
+  -backend-config="key=ci-aws-webmin-centos" \
+  $*
